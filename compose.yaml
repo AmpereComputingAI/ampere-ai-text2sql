@@ -1,0 +1,44 @@
+services:
+  ollama:
+    volumes:
+      - ollama:/root/.ollama
+    container_name: ollama
+    #pull_policy: always
+    tty: true
+    restart: unless-stopped
+    #image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+    image: ghcr.io/amperecomputingai/ollama-ampere:1.0.0-ol9
+    ports:
+      - 11434:11434
+
+  open-webui:
+    build:
+      context: .
+      args:
+        OLLAMA_BASE_URL: '/ollama'
+      dockerfile: Dockerfile
+    image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+      - ./functions:/app/backend/data/functions
+    depends_on:
+      - ollama
+    ports:
+      - ${OPEN_WEBUI_PORT-3000}:8080
+      #- 5433:5432
+    environment:
+      - 'ENV=dev'
+      - 'OLLAMA_BASE_URL=http://ollama:11434'
+      - 'WEBUI_SECRET_KEY='
+      - 'WEBUI_AUTH=False'
+      - 'FUNCTIONS_PATH=/app/backend/data/functions'
+    env_file:
+        - .env
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+
+volumes:
+  ollama: {}
+  open-webui: {}
