@@ -67,9 +67,10 @@ DB_PORT=5435
 DB_USER=postgres
 DB_PASSWORD=dvdrental
 DB_DATABASE=dvdrental
-DB_TABLE=actor 
+DB_TABLE=actor,customer,film,inventory,payment
 OLLAMA_HOST=http://host.docker.internal:11434
 TEXT_TO_SQL_MODEL=hf.co/mradermacher/Arctic-Text2SQL-R1-7B-GGUF:Arctic-Text2SQL-R1-7B.Q8_0.gguf
+CONTEXT_WINDOW=8192
 ```
 
 ## Quick Start
