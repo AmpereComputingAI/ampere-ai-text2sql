@@ -109,7 +109,68 @@ With the function imported and the required models pulled to Ollama, you can now
 1.  Click the **New Chat** button in the top left.
 2.  Select the **LlamaIndex Text to SQL RAG** model from the model dropdown.
 3.  Send a message asking for data regarding the database table defined in your environment variables.
-    *   *Example:* "List the name of the actors whose first name is ‘Tom’"
+
+Here are 5 example prompts based on the PostgreSQL DVD Rental database that you can try:
+
+**Prompt 1: Customer Search**
+*   **Question:** "Find the email address for the customer named 'Nancy Thomas'."
+*   **SQL Query (Generated):**
+    ```sql
+    SELECT email 
+    FROM customer 
+    WHERE first_name = 'Nancy' 
+    AND last_name = 'Thomas';
+    ```
+*   **Expected Answer (when SQL query is run):** A single row containing the email address.
+*   **Result:** `nancy.thomas@sakilacustomer.org`
+
+**Prompt 2: Filtering Films by Rating**
+*   **Question:** "List the titles of all films that have a 'G' rating."
+*   **SQL Query (Generated):**
+    ```sql
+    SELECT title 
+    FROM film 
+    WHERE rating = 'G';
+    ```
+*   **Expected Answer (when SQL query is run):** A list of film titles where the rating column equals 'G'.
+*   **Result:** (Returns approx 178 rows) *ACE GOLDFINGER, ALAMO VIDEOTAPE, AMISTAD MIDSUMMER, etc.*
+
+**Prompt 3: Aggregating Inventory Data**
+*   **Question:** "How many total distinct films are currently listed in the inventory?"
+*   **SQL Query (Generated):**
+    ```sql
+    SELECT COUNT(DISTINCT film_id) 
+    FROM inventory;
+    ```
+*   **Expected Answer (when SQL query is run):** A single integer representing the number of unique movies available in physical inventory.
+*   **Result:** `958` *(Note: While there are 1000 films in the film table, only 958 are physically in the inventory table).*
+
+**Prompt 4: Sorting and Limiting Results**
+*   **Question:** "What are the top 5 longest films by duration?"
+*   **SQL Query (Generated):**
+    ```sql
+    SELECT title, length 
+    FROM film 
+    ORDER BY length DESC 
+    LIMIT 5;
+    ```
+*   **Expected Answer (when SQL query is run):** A table with the titles and lengths of the 5 longest movies.
+*   **Result:**
+    *   DARN FORRESTER (185)
+    *   POND FLOYD (185)
+    *   CHICAGO NORTH (185)
+    *   MUSCLE BRIGHT (185)
+    *   WORST BANGER (185)
+
+**Prompt 5: Calculating Revenue**
+*   **Question:** "Calculate the total revenue generated from all payments made by customers."
+*   **SQL Query (Generated):**
+    ```sql
+    SELECT SUM(amount) 
+    FROM payment;
+    ```
+*   **Expected Answer (when SQL query is run):** A single numeric value representing the sum of the amount column in the payment table.
+*   **Result:** `61312.04`
 
 ### 3. Refining Results
 To improve the Text-to-SQL capabilities, you should experiment with the system prompts:
