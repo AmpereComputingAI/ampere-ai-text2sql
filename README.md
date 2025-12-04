@@ -94,12 +94,25 @@ http://<host-ip>:3000
 ```
 
 ### 1. Import the Function
+There are three ways to import the required function:
+#### 1.1 Import from community functions:
 1.  Navigate to the function’s page on the Open WebUI community site: [Text to SQL RAG Pipe](https://openwebui.com/f/0xthresh/text_to_sql_rag_pipe).
 2.  Click the blue **Get** button on the right-hand side.
 3.  Click the **Import to WebUI** button. This will open a new tab in your local Open WebUI instance.
 4.  In the new tab, click the **Save** button in the bottom-right corner, then click **Confirm** on the popup window.
-5.  Alternatively, if you decide to import from a URL instead of the method above: Click **New Section** -> **Import From Link**, enter the URL (<url>), and click **Import**.
-6.  Once the format check is complete, you will be redirected back to the Functions page.
+5.  Once the format check is complete, you will be redirected back to the Functions page.
+
+#### 1.2 Import from local file:
+1. Click the **Import** button in the Functions interface.
+2. Select the file from your local machine.
+3. Click **Confirm**.
+
+#### 1.3 Import from URL:
+1. Click **New** Function.
+2. Enter the URL.
+3. Click **Import**, then **Save**, and finally **Confirm**.
+
+*Note: You may have to refresh the page after import.*
 
 > **Important:** Make sure to **enable** the model using the radio button/toggle on the right-hand side of the function entry. If this is not enabled, the model will not appear in your selection list.
 
