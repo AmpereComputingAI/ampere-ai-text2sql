@@ -41,7 +41,46 @@ This demo solves these challenges using **Open WebUI Functions**—modular build
 
 The solution is packaged entirely in Docker Compose, orchestrating the interaction between the User Interface, the AI Model, and the Database.
 
-*(Place your architecture diagram here)*
+```mermaid
+graph LR
+    %% Styles for nodes
+    classDef nodeStyle fill:#fff,stroke:#000,stroke-width:1px,rx:5,ry:5;
+
+    %% Left Column: Open WebUI Process
+    subgraph OWP [Open WebUI Process]
+        direction TB
+        A[User sends message]
+        F[SQL query from LLM is<br>streamed to user]
+    end
+
+    %% Middle Column: Functions Process
+    subgraph FP [Functions Process]
+        direction TB
+        B[Database connection<br>started, metadata<br>gathered and sent to<br>LLM]
+        D[SQL query returned]
+    end
+
+    %% Right Column: Ollama Server
+    subgraph OS [Ollama Server]
+        direction TB
+        C[Using text-to-SQL<br>prompt, LLM generates<br>SQL query using user<br>message and<br>metadata]
+    end
+
+    %% Connections
+    A --> B
+    B --> C
+    C --> D
+    D --> F
+
+
+    %% Apply Styles
+    class A,B,C,D,E,F nodeStyle
+
+    %% Color the Subgraphs/Swimlanes
+    style OWP fill:#ffdce0,stroke:#333,stroke-width:2px
+    style FP fill:#dcf5dc,stroke:#333,stroke-width:2px
+    style OS fill:#dcebf5,stroke:#333,stroke-width:2px
+```
 
 ---
 
