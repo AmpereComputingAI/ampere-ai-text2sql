@@ -3,20 +3,13 @@ services:
     volumes:
       - ollama:/root/.ollama
     container_name: ollama
-    #pull_policy: always
     tty: true
     restart: unless-stopped
-    #image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
     image: ghcr.io/amperecomputingai/ollama-ampere:1.0.0-ol9
     ports:
       - 11434:11434
 
   open-webui:
-    build:
-      context: .
-      args:
-        OLLAMA_BASE_URL: '/ollama'
-      dockerfile: Dockerfile
     image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
     container_name: open-webui
     volumes:
@@ -27,7 +20,6 @@ services:
       - postgres
     ports:
       - ${OPEN_WEBUI_PORT-3000}:8080
-      #- 5433:5432
     environment:
       - 'ENV=dev'
       - 'OLLAMA_BASE_URL=http://ollama:11434'

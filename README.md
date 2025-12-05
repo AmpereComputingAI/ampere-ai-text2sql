@@ -88,7 +88,7 @@ graph LR
 
 Ensure your environment meets the following requirements:
 
-*   **Ampere Altra / Altra Max System** (Recommended)
+*   **Ampere Altra / AmpereOne System** (Recommended)
 *   **Docker Engine** & **Docker Compose**
 
 ---
