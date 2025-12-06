@@ -33,8 +33,8 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: pg_dvdrental:latest
-    container_name: dvdrental2
+    image: ghcr.io/amperecomputingai/ampere-ai-text2sql:pg_dvdrental_0.1
+    container_name: pg_dvdrental
     restart: always
     ports:
       - "5436:5432" # host_port:container_port
