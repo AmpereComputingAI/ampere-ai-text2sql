@@ -237,3 +237,8 @@ To improve the Text-to-SQL capabilities, you should experiment with the system p
 
 ### License
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+### References
+- https://github.com/open-webui/open-webui
+- https://github.com/ollama/ollama
+- https://github.com/kedziorski/test-db-pg-dvdrental
