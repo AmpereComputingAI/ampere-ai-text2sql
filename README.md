@@ -5,7 +5,7 @@
   **Talk to your data using Open WebUI and LlamaIndex on Ampere CPUs**
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![Platform](https://img.shields.io/badge/Platform-Ampere%20Altra-blue)](https://amperecomputing.com)
+  [![Platform](https://img.shields.io/badge/Platform-Ampere%20Altra%20%2F%20AmpereOne-blue)](https://amperecomputing.com)
   [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?logo=docker)](https://docs.docker.com/get-docker/)
 
 </div>
